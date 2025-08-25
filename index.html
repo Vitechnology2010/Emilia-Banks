@@ -10,7 +10,7 @@
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: #fff;
-            background: #000;
+            background: linear-gradient(to bottom, #000000, #434343);
             scroll-behavior: smooth;
         }
         h1, h2, h3 {
@@ -28,7 +28,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: #000;
+            background: rgba(0, 0, 0, 0.8);
             padding: 1rem 0;
             z-index: 100;
         }
@@ -60,6 +60,10 @@
             height: 100vh;
             position: relative;
             overflow: hidden;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .slideshow {
             position: absolute;
@@ -78,6 +82,7 @@
             position: absolute;
             opacity: 0;
             animation: slideFade 15s infinite;
+            transition: opacity 1s ease-in-out;
         }
         .slide:nth-child(1) { animation-delay: 0s; }
         .slide:nth-child(2) { animation-delay: 5s; }
@@ -95,6 +100,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
         }
         .hero-overlay h1 {
             font-size: 3rem;
@@ -106,12 +114,13 @@
             padding: 0.5rem 1rem;
             margin: 0 0.5rem;
             border-radius: 5px;
+            transition: background 0.3s;
         }
         .cta:hover {
             background: #fff;
         }
         #gallery {
-            background: #000;
+            background: transparent;
         }
         .filters {
             text-align: center;
@@ -124,6 +133,7 @@
             padding: 0.5rem 1rem;
             margin: 0 0.5rem;
             cursor: pointer;
+            transition: all 0.3s;
         }
         .filter-btn:hover {
             background: #D4AF37;
@@ -134,22 +144,48 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
         }
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+        }
         .grid img {
             width: 100%;
             border: 2px solid #D4AF37;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
-        .grid img:hover {
-            transform: scale(1.05);
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+        .grid-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .grid-item:hover::after {
+            opacity: 1;
         }
         #services {
-            background: #000;
+            background: linear-gradient(to bottom, #434343, #000000);
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
         .service-card {
             border: 1px solid #D4AF37;
             padding: 1rem;
-            margin: 1rem;
             text-align: center;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
         }
         .service-card h3 {
             margin-bottom: 1rem;
@@ -160,21 +196,29 @@
             padding: 0.5rem 1rem;
             border: none;
             cursor: pointer;
+            transition: background 0.3s;
         }
         .book-btn:hover {
             background: #fff;
         }
         #about {
             text-align: center;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            padding: 6rem 0;
         }
         #about img {
             border: 2px solid #D4AF37;
             border-radius: 50%;
             width: 200px;
             height: 200px;
+            margin-bottom: 1rem;
         }
         #booking, #contact {
-            background: #000;
+            background: transparent;
         }
         form {
             max-width: 600px;
@@ -183,11 +227,15 @@
             flex-direction: column;
         }
         input, select, textarea {
-            background: #000;
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid #D4AF37;
             color: #fff;
             padding: 0.5rem;
             margin-bottom: 1rem;
+            transition: glow 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 10px #D4AF37;
         }
         button {
             background: #D4AF37;
@@ -195,6 +243,7 @@
             padding: 0.5rem;
             border: none;
             cursor: pointer;
+            transition: background 0.3s;
         }
         button:hover {
             background: #fff;
@@ -210,6 +259,17 @@
         }
         .social a {
             margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        .social a:hover {
+            color: #D4AF37;
+        }
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
 </head>
@@ -228,11 +288,11 @@
         </nav>
     </header>
 
-    <section id="home">
+    <section id="home" class="parallax">
         <div class="slideshow">
-            <div class="slide" style="background-image: url('https://placehold.co/1200x800/black/gold/Stunning%20Asoebi%20Gown');"></div>
-            <div class="slide" style="background-image: url('https://placehold.co/1200x800/black/gold/Beautiful%20Bridal%20Dress');"></div>
-            <div class="slide" style="background-image: url('https://placehold.co/1200x800/black/gold/Elegant%20Wedding%20Guest%20Outfit');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570545887596-0a6d42a1d509?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570545909511-4c817f55de7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
         </div>
         <div class="hero-overlay">
             <h1>Emilia Banks Collection – Where Tradition Meets Elegance</h1>
@@ -245,26 +305,27 @@
     <section id="gallery">
         <h2>The Collections</h2>
         <div class="filters">
-            <button class="filter-btn">Bridal</button>
-            <button class="filter-btn">Asoebi</button>
-            <button class="filter-btn">Wedding Guests</button>
-            <button class="filter-btn">Couture</button>
+            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="bridal">Bridal</button>
+            <button class="filter-btn" data-filter="asoebi">Asoebi</button>
+            <button class="filter-btn" data-filter="wedding-guests">Wedding Guests</button>
+            <button class="filter-btn" data-filter="couture">Couture</button>
         </div>
         <div class="grid">
-            <img src="https://placehold.co/400x600/black/gold/Asoebi%20Lace%20Dress" alt="Asoebi Dress">
-            <img src="https://placehold.co/400x600/black/gold/Bridal%20Gown" alt="Bridal Gown">
-            <img src="https://placehold.co/400x600/black/gold/Wedding%20Guest%20Chic" alt="Wedding Guest Dress">
-            <img src="https://placehold.co/400x600/black/gold/Sequins%20Ankara" alt="Ankara Glam">
-            <img src="https://placehold.co/400x600/black/gold/Traditional%20Attire" alt="Traditional Wedding">
-            <img src="https://placehold.co/400x600/black/gold/Party%20Look" alt="Nigerian Party Look">
-            <img src="https://placehold.co/400x600/black/gold/Couture%20Dress" alt="Couture">
-            <img src="https://placehold.co/400x600/black/gold/Luxury%20Gown" alt="Luxury Gown">
+            <div class="grid-item" data-category="asoebi"><img src="https://images.unsplash.com/photo-1570545887596-0a6d42a1d509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Asoebi Dress"></div>
+            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bridal Gown"></div>
+            <div class="grid-item" data-category="wedding-guests"><img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wedding Guest Dress"></div>
+            <div class="grid-item" data-category="asoebi"><img src="https://images.unsplash.com/photo-1570545909511-4c817f55de7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ankara Glam"></div>
+            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1517451330947-7809dead78d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traditional Wedding"></div>
+            <div class="grid-item" data-category="wedding-guests"><img src="https://images.unsplash.com/photo-1583994009785-37ec30bf9342?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nigerian Party Look"></div>
+            <div class="grid-item" data-category="couture"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Couture"></div>
+            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1554073171-8599c6f078b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Gown"></div>
         </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="parallax" style="background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
         <h2>Services</h2>
-        <div class="grid">
+        <div class="service-grid">
             <div class="service-card">
                 <h3>Consultation for Custom Outfits</h3>
                 <button class="book-btn">Book Now</button>
@@ -298,7 +359,7 @@
 
     <section id="about">
         <h2>About Us</h2>
-        <img src="https://placehold.co/200x200/black/gold/Designer%20Portrait" alt="Designer Portrait">
+        <img src="https://images.unsplash.com/photo-1583994009785-37ec30bf9342?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Designer Portrait">
         <p>Emilia Banks Collection is a Nigerian-inspired fashion house specializing in Asoebi, bridal, and wedding guest dresses. Our brand story highlights African heritage meeting modern fashion.</p>
         <p>Mission: To empower women with style that honors tradition while embracing modern elegance.</p>
     </section>
@@ -314,7 +375,10 @@
                 <option value="consultation">Consultation</option>
                 <option value="measurements">Basic Measurements</option>
                 <option value="alterations">General Alterations</option>
-                <!-- Add more options -->
+                <option value="wedding-alterations">Wedding Alterations</option>
+                <option value="follow-up">Consultation Follow-up</option>
+                <option value="fitting">Final Fitting</option>
+                <option value="classes">Sewing Classes</option>
             </select>
             <textarea placeholder="Notes"></textarea>
             <button type="submit">Secure Your Appointment</button>
@@ -342,22 +406,30 @@
             <a href="https://www.pinterest.com/emiliabanks_official/">Pinterest</a>
             <a href="https://www.facebook.com/emiliabankscollection/">Facebook</a>
         </div>
-        <ul>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#booking">Book Now</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
+            <li style="margin: 0 1rem;"><a href="#gallery">Gallery</a></li>
+            <li style="margin: 0 1rem;"><a href="#services">Services</a></li>
+            <li style="margin: 0 1rem;"><a href="#booking">Book Now</a></li>
+            <li style="margin: 0 1rem;"><a href="#contact">Contact</a></li>
         </ul>
         <p>© Emilia Banks Collection – All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Simple filter functionality (for demonstration)
+        // Filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const gridItems = document.querySelectorAll('.grid-item');
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Add logic to filter grid items if classed accordingly
-                alert('Filtering by ' + btn.textContent);
+                const filter = btn.dataset.filter;
+                gridItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
         });
     </script>

@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emilia Banks Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
             color: #fff;
-            background: linear-gradient(to bottom, #000000, #434343);
+            background: linear-gradient(135deg, #1a1a1a 0%, #434343 100%), url('https://images.pexels.com/photos/1346099/pexels-photo-1346099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
+            background-size: cover;
+            background-blend-mode: overlay;
             scroll-behavior: smooth;
         }
         h1, h2, h3 {
-            font-family: 'Playfair+Display', serif;
-            color: #D4AF37;
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
         }
         a {
-            color: #D4AF37;
+            color: #FFD700;
             text-decoration: none;
+            transition: color 0.3s;
         }
         a:hover {
             color: #fff;
@@ -28,42 +36,52 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             padding: 1rem 0;
-            z-index: 100;
+            z-index: 1000;
         }
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
         }
         nav .logo {
-            font-family: 'Playfair+Display', serif;
-            font-size: 1.5rem;
-            color: #D4AF37;
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #FFD700;
+            letter-spacing: 2px;
         }
         nav ul {
             list-style: none;
             display: flex;
+            gap: 2rem;
         }
-        nav ul li {
-            margin-left: 2rem;
+        nav ul li a {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background: #FFD700;
+            color: #000;
         }
         section {
-            padding: 4rem 0;
-            max-width: 1200px;
+            padding: 6rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
         #home {
             height: 100vh;
             position: relative;
             overflow: hidden;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .slideshow {
             position: absolute;
@@ -71,8 +89,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            animation: fade 15s infinite;
+            z-index: -1;
         }
         .slide {
             width: 100%;
@@ -81,195 +98,259 @@
             background-position: center;
             position: absolute;
             opacity: 0;
-            animation: slideFade 15s infinite;
-            transition: opacity 1s ease-in-out;
+            animation: slideFade 18s infinite;
+            transition: opacity 1.5s ease-in-out;
         }
         .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 5s; }
-        .slide:nth-child(3) { animation-delay: 10s; }
+        .slide:nth-child(2) { animation-delay: 6s; }
+        .slide:nth-child(3) { animation-delay: 12s; }
         @keyframes slideFade {
             0% { opacity: 0; }
-            6.67% { opacity: 1; }
+            5% { opacity: 1; }
             33.33% { opacity: 1; }
-            40% { opacity: 0; }
+            38.33% { opacity: 0; }
             100% { opacity: 0; }
         }
         .hero-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
         .hero-overlay h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .cta {
-            background: #D4AF37;
+            background: #FFD700;
             color: #000;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            transition: background 0.3s;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.75rem;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
         }
         .cta:hover {
             background: #fff;
+            color: #000;
+            transform: translateY(-3px);
         }
         #gallery {
             background: transparent;
         }
         .filters {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         .filter-btn {
             background: none;
-            border: 1px solid #D4AF37;
-            color: #D4AF37;
-            padding: 0.5rem 1rem;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 0.5rem 1.5rem;
             margin: 0 0.5rem;
+            border-radius: 25px;
             cursor: pointer;
+            font-size: 1rem;
             transition: all 0.3s;
         }
-        .filter-btn:hover {
-            background: #D4AF37;
+        .filter-btn:hover, .filter-btn.active {
+            background: #FFD700;
             color: #000;
         }
-        .grid {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
-        .grid-item {
+        .gallery-item {
             position: relative;
             overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-        .grid img {
+        .gallery-item img {
             width: 100%;
-            border: 2px solid #D4AF37;
-            transition: transform 0.3s ease;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .grid-item:hover img {
+        .gallery-item:hover img {
             transform: scale(1.1);
         }
-        .grid-item::after {
+        .gallery-item::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(212, 175, 55, 0.2);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             opacity: 0;
             transition: opacity 0.3s;
         }
-        .grid-item:hover::after {
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        .gallery-item span {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover span {
             opacity: 1;
         }
         #services {
-            background: linear-gradient(to bottom, #434343, #000000);
+            background: linear-gradient(to bottom, #434343, #1a1a1a);
+            position: relative;
         }
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
         .service-card {
-            border: 1px solid #D4AF37;
-            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #FFD700;
+            padding: 2rem;
             text-align: center;
-            transition: transform 0.3s;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
         .service-card h3 {
             margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
         .book-btn {
-            background: #D4AF37;
+            background: #FFD700;
             color: #000;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             border: none;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
         .book-btn:hover {
             background: #fff;
+            transform: scale(1.05);
         }
         #about {
             text-align: center;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: url('https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
             background-size: cover;
-            background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            padding: 6rem 0;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
         #about img {
-            border: 2px solid #D4AF37;
+            border: 3px solid #FFD700;
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            margin-bottom: 1rem;
+            width: 250px;
+            height: 250px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
         #booking, #contact {
             background: transparent;
         }
         form {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
+            gap: 1rem;
         }
         input, select, textarea {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #D4AF37;
+            border: 2px solid #FFD700;
             color: #fff;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            transition: glow 0.3s;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
         input:focus, select:focus, textarea:focus {
-            box-shadow: 0 0 10px #D4AF37;
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
         button {
-            background: #D4AF37;
+            background: #FFD700;
             color: #000;
-            padding: 0.5rem;
+            padding: 1rem;
             border: none;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
         button:hover {
             background: #fff;
+            transform: scale(1.05);
+        }
+        #contact iframe {
+            border-radius: 15px;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 700px;
         }
         footer {
             background: #000;
-            padding: 1rem 0;
+            padding: 2rem;
             text-align: center;
-            border-top: 1px solid #D4AF37;
-        }
-        .social {
-            margin-bottom: 1rem;
+            border-top: 2px solid #FFD700;
         }
         .social a {
             margin: 0 1rem;
-            transition: color 0.3s;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
         }
         .social a:hover {
-            color: #D4AF37;
+            transform: scale(1.2);
         }
-        /* Parallax effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        footer ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .hero-overlay h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+            .gallery-item img {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -281,77 +362,86 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#booking">Booking</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="parallax">
+    <section id="home">
         <div class="slideshow">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570545887596-0a6d42a1d509?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570545909511-4c817f55de7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1380&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/5806959/pexels-photo-5806959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/5806960/pexels-photo-5806960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/1346099/pexels-photo-1346099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
         </div>
         <div class="hero-overlay">
             <h1>Emilia Banks Collection – Where Tradition Meets Elegance</h1>
-            <a href="#gallery" class="cta">View Collection</a>
-            <a href="#booking" class="cta">Book Consultation</a>
-            <a href="#services" class="cta">Join Sewing Class</a>
+            <div>
+                <a href="#gallery" class="cta">View Collection</a>
+                <a href="#booking" class="cta">Book Consultation</a>
+                <a href="#services" class="cta">Join Sewing Class</a>
+            </div>
         </div>
     </section>
 
     <section id="gallery">
         <h2>The Collections</h2>
         <div class="filters">
-            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="bridal">Bridal</button>
             <button class="filter-btn" data-filter="asoebi">Asoebi</button>
             <button class="filter-btn" data-filter="wedding-guests">Wedding Guests</button>
             <button class="filter-btn" data-filter="couture">Couture</button>
         </div>
-        <div class="grid">
-            <div class="grid-item" data-category="asoebi"><img src="https://images.unsplash.com/photo-1570545887596-0a6d42a1d509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Asoebi Dress"></div>
-            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bridal Gown"></div>
-            <div class="grid-item" data-category="wedding-guests"><img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wedding Guest Dress"></div>
-            <div class="grid-item" data-category="asoebi"><img src="https://images.unsplash.com/photo-1570545909511-4c817f55de7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ankara Glam"></div>
-            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1517451330947-7809dead78d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traditional Wedding"></div>
-            <div class="grid-item" data-category="wedding-guests"><img src="https://images.unsplash.com/photo-1583994009785-37ec30bf9342?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nigerian Party Look"></div>
-            <div class="grid-item" data-category="couture"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Couture"></div>
-            <div class="grid-item" data-category="bridal"><img src="https://images.unsplash.com/photo-1554073171-8599c6f078b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Gown"></div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="asoebi"><img src="https://images.pexels.com/photos/5806959/pexels-photo-5806959.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Asoebi Dress"><span>Asoebi Lace</span></div>
+            <div class="gallery-item" data-category="bridal"><img src="https://images.pexels.com/photos/1453008/pexels-photo-1453008.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bridal Gown"><span>Luxury Bridal</span></div>
+            <div class="gallery-item" data-category="wedding-guests"><img src="https://images.pexels.com/photos/5806960/pexels-photo-5806960.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wedding Guest Dress"><span>Chic Guest Look</span></div>
+            <div class="gallery-item" data-category="asoebi"><img src="https://images.pexels.com/photos/1346099/pexels-photo-1346099.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ankara Glam"><span>Ankara Sequins</span></div>
+            <div class="gallery-item" data-category="bridal"><img src="https://images.pexels.com/photos/1453009/pexels-photo-1453009.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Traditional Wedding"><span>Traditional Elegance</span></div>
+            <div class="gallery-item" data-category="wedding-guests"><img src="https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nigerian Party Look"><span>Party Glam</span></div>
+            <div class="gallery-item" data-category="couture"><img src="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Couture"><span>Bespoke Couture</span></div>
+            <div class="gallery-item" data-category="bridal"><img src="https://images.pexels.com/photos/1453010/pexels-photo-1453010.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Luxury Gown"><span>Modern Bridal</span></div>
         </div>
     </section>
 
-    <section id="services" class="parallax" style="background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
-        <h2>Services</h2>
+    <section id="services">
+        <h2>Our Services</h2>
         <div class="service-grid">
             <div class="service-card">
-                <h3>Consultation for Custom Outfits</h3>
+                <h3>Custom Outfit Consultation</h3>
+                <p>Personalized design sessions to create your dream look.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>Basic Measurements</h3>
+                <p>Precise measurements for a perfect fit.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>General Alterations</h3>
+                <p>Expert adjustments for any garment.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>Wedding Alterations</h3>
+                <p>Specialized tailoring for bridal and guest attire.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>Consultation Follow-up</h3>
+                <p>Refine your design with follow-up sessions.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>Final Fitting</h3>
+                <p>Ensure your outfit is flawless.</p>
                 <button class="book-btn">Book Now</button>
             </div>
             <div class="service-card">
                 <h3>Sewing Classes</h3>
+                <p>Learn the art of fashion design with our experts.</p>
                 <button class="book-btn">Book Now</button>
             </div>
         </div>
@@ -359,20 +449,20 @@
 
     <section id="about">
         <h2>About Us</h2>
-        <img src="https://images.unsplash.com/photo-1583994009785-37ec30bf9342?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Designer Portrait">
-        <p>Emilia Banks Collection is a Nigerian-inspired fashion house specializing in Asoebi, bridal, and wedding guest dresses. Our brand story highlights African heritage meeting modern fashion.</p>
-        <p>Mission: To empower women with style that honors tradition while embracing modern elegance.</p>
+        <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Designer Portrait">
+        <p>Emilia Banks Collection is a Nigerian-inspired fashion house celebrating the vibrant beauty of African heritage through Asoebi, bridal, and wedding guest dresses. Our designs fuse tradition with modern sophistication, crafted to empower every woman.</p>
+        <p><strong>Mission:</strong> To empower women with style that honors tradition while embracing modern elegance.</p>
     </section>
 
     <section id="booking">
-        <h2>Booking</h2>
-        <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="date" placeholder="Date" required>
-            <select required>
-                <option value="">Service Type</option>
-                <option value="consultation">Consultation</option>
+        <h2>Book Your Appointment</h2>
+        <form action="https://formspree.io/f/your-formspree-id" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="date" name="date" required>
+            <select name="service" required>
+                <option value="">Select Service</option>
+                <option value="consultation">Custom Outfit Consultation</option>
                 <option value="measurements">Basic Measurements</option>
                 <option value="alterations">General Alterations</option>
                 <option value="wedding-alterations">Wedding Alterations</option>
@@ -380,56 +470,83 @@
                 <option value="fitting">Final Fitting</option>
                 <option value="classes">Sewing Classes</option>
             </select>
-            <textarea placeholder="Notes"></textarea>
+            <textarea name="notes" placeholder="Additional Notes"></textarea>
             <button type="submit">Secure Your Appointment</button>
         </form>
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Address: 4633 42nd Pl Hyattsville, MD 20781</p>
-        <p>Email: justmeimma@gmail.com</p>
-        <p>Phone: +1 443-559-7034</p>
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-map-marker-alt"></i> 4633 42nd Pl Hyattsville, MD 20781</p>
+        <p><i class="fas fa-envelope"></i> justmeimma@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +1 443-559-7034</p>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3103.641528088515!2d-76.9412849846797!3d38.951641779563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c796f4a6f5b7%3A0x5a8a0a4d6b6d4f4!2s4633+42nd+Pl%2C+Hyattsville%2C+MD+20781!5e0!3m2!1sen!2sus!4v1724672025907!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Message" required></textarea>
+        <form action="https://formspree.io/f/your-formspree-id" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Inquiry</button>
         </form>
     </section>
 
     <footer>
         <div class="social">
-            <a href="https://www.instagram.com/emiliabankscollection/">Instagram</a>
-            <a href="https://www.tiktok.com/@emiliabankscollection">TikTok</a>
-            <a href="https://www.pinterest.com/emiliabanks_official/">Pinterest</a>
-            <a href="https://www.facebook.com/emiliabankscollection/">Facebook</a>
+            <a href="https://www.instagram.com/emiliabankscollection/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@emiliabankscollection"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.pinterest.com/emiliabanks_official/"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/emiliabankscollection/"><i class="fab fa-facebook"></i></a>
         </div>
-        <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
-            <li style="margin: 0 1rem;"><a href="#gallery">Gallery</a></li>
-            <li style="margin: 0 1rem;"><a href="#services">Services</a></li>
-            <li style="margin: 0 1rem;"><a href="#booking">Book Now</a></li>
-            <li style="margin: 0 1rem;"><a href="#contact">Contact</a></li>
+        <ul>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <p>© Emilia Banks Collection – All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Filter functionality
+        // Gallery filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const gridItems = document.querySelectorAll('.grid-item');
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
                 const filter = btn.dataset.filter;
-                gridItems.forEach(item => {
+                galleryItems.forEach(item => {
                     if (filter === 'all' || item.dataset.category === filter) {
                         item.style.display = 'block';
+                        setTimeout(() => item.style.opacity = '1', 100);
                     } else {
-                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
                     }
                 });
+            });
+        });
+
+        // Form submission handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (response.ok) {
+                        alert('Submission successful! You will receive a confirmation soon.');
+                        form.reset();
+                    } else {
+                        alert('There was an error. Please try again.');
+                    }
+                } catch (error) {
+                    alert('Network error. Please check your connection.');
+                }
             });
         });
     </script>
